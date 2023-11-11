@@ -1,11 +1,48 @@
 <!DOCTYPE html>
-<html lang="en">
-    {% extends "acesso.html" %}
-  <body>
-    {% block content %}
-    
-    <h1> Pesquisar.html</h1>
-
+		{% extends "acesso.html" %}
+		{% block content %}
+    <div id="content-pesquisa" class="content-pesquisa">
+      <form method="POST" align="center">
+        <table id="customers-cadastro">
+          <tr>
+            <th colspan="2" align="center"> Pesquisa de Livros e Autores</th>
+          </tr>
+          <tr>
+            <td>Selecione uma opção</td>
+            <td><select name="opcoes" id="select" onchange="this.form.submit()">
+                  <option value="">Selecione um tipo de pesquisa</option>
+                  {% if select == 'titulo' or select == 'None' %}
+                  <option value="titulo" selected>Título</option>
+                  {% else %}
+                  <option value="titulo">Título</option>
+                  {% endif %}
+                  {% if select == 'autor'%}
+                  <option value="autor" selected>Autor</option>
+                  {% else %}
+                  <option value="autor">Autor</option>
+                  {% endif %}
+                </select>
+            </td>
+          </tr>
+            {% if select == 'titulo' %}
+            <tr>
+              <td>Digite o Título do Livro</td>
+              <td><input name="titulo_pesq" type="text"></td>
+            </tr>
+            {% endif %}
+            {% if select == 'autor' %}
+            <tr>
+              <td>Digite o Autor do Livro</td>
+              <td><input name="autor_pesq" type="text"></td>
+            </tr>
+            {% endif %}
+            {% if select == 'None': %}
+            <tr>
+              <td colspan="2" align="center">{{ form.submit(class="botao") }}</td>
+            </tr>
+            {% endif %}
+        </table>
+      </form>
+    </div>
+    {{ select }}
     {% endblock %}
-  </body>
-</html>

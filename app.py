@@ -58,11 +58,6 @@ def acesso():
 def sobre():
     return render_template("sobre.html")
 
-#Pagina para informações do aplicativo
-@app.route("/pesquisar")
-def pesquisar():
-    return render_template("pesquisar.html")
-
 @app.route("/sucesso")
 def sucesso():
     return render_template("sucesso.html")
@@ -105,7 +100,7 @@ def cadastrar():
 @app.route('/disponibilidade')
 def disponibilidade():
     page = request.args.get('page', 1, type=int)
-    pagination = Catalogoslivros.query.order_by(Catalogoslivros.titulo).paginate(page=page, per_page=5)
+    pagination = Catalogoslivros.query.order_by(Catalogoslivros.titulo).paginate(page=page, per_page=4)
     #catalogoslivros = Catalogoslivros.query.all()
     #return render_template('index.html', catalagoslivros=catalogoslivros,posts=posts.items, next_url=next_url, prev_url=prev_url)
     return render_template('disponibilidade.html', pagination=pagination)
@@ -121,7 +116,14 @@ def erase(id):
     data = Catalogoslivros.query.get(id)
     db.session.delete(data)
     db.session.commit()
-    return redirect('/')
+    return redirect('/disponibilidade')
+
+#Pagina para informações do aplicativo
+@app.route("/pesquisar", methods=['GET','POST'])
+def pesquisar():
+    form = LivroForm()
+    select = request.form.get('opcoes')
+    return render_template("pesquisar.html", form=form, select=select)
 
 if __name__ == '__main__':
     app.run()
