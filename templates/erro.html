@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+    <body>
+        {% extends "acesso.html" %}
+        {% block content %}
+        <div id="content-cadastro" class="content-cadastro">
+            <form clas="form-horizontal" method="POST" align="center">
+            {{ form.csrf_token() }}
+                <div id="content-cadastro" class="content-cadastro">
+                    <table id="cadastro" class="cadastro">
+                        <tr>
+                            <th colspan="2" align="center">Erra ao Realizar Cadastro.</th>
+                        </tr>
+                        <tr>
+                            <td> {{ form.titulo.label }}</td>
+                            <td> {{ form.titulo.data }}</td>
+                        </tr>
+                        <tr>
+                            <td> {{ form.autor.label }}</td>
+                            <td> {{ form.autor.data }}</td>
+                        </tr>
+                        <tr>
+                            <td> {{ form.exemplares.label }}</td>
+                            <td> {{ form.exemplares.data }}</td>
+                        </tr>
+                    </table>
+                </div>    
+            </form>
+	    </div>    
+        {% endblock %}
+  </body>
+</html>

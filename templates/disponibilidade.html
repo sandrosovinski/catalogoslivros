@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+    <body>
+        {% extends "acesso.html" %}
+        {% block content %}
+        <div id="content-cadastro" class="content-cadastro">
+            <form clas="form-horizontal" method="POST" align="center">
+                <h3>Relação de Livros Cadastrados</h3>
+                <br>
+                <h2>(Página {{ pagination.page }})</h2>
+                <table id="cadastro" class="cadastro">
+                    <thead>
+                        <th>Id</th>
+                        <th>Titulo do Livro</th>
+                        <th>Autor do Livro</th>
+                        <th>Exemplares</th>
+                        <th>#</th>
+                    </thead>
+                {% for data in pagination.items %} 
+                    <tbody>
+                        <td>{{data.id}}</td>
+                        <td>{{data.titulo}}</td>
+                        <td>{{data.autor}}</td>
+                        <td>{{data.exemplares}}</td>
+                        <td><a href="/delete/{{data.id}}" type="button">Delete</a></td>
+                    </tbody>
+                {% endfor%}
+                </table>
+                <div class="btn-paginacao" padding="20px">
+                {% if pagination.has_prev %}
+                    <span padding="20px">
+                        <a class='btn-paginacao' href="{{ url_for('disponibilidade', page=pagination.prev_num) }}">{{ '<<<' }}&nbsp;&nbsp;</a>
+                    </span>
+                {% endif %}
+            
+                {% for number in pagination.iter_pages() %}
+                    {% if pagination.page != number %}
+                        <span padding="20px">
+                                <a class='btn-paginacao' href="{{ url_for('disponibilidade', page=number) }}">&nbsp;&nbsp;{{ number }}&nbsp;&nbsp;</a>
+                        </span>
+                    {% else %}
+                        <span class='btn-paginacao' padding="20px">&nbsp;&nbsp;{{ number }}&nbsp;&nbsp;</span>
+                    {% endif %}
+                {% endfor %}
+            
+                {% if pagination.has_next %}
+                    <span padding="20px">
+                        <a class='btn-paginacao' href="{{ url_for('disponibilidade', page=pagination.next_num) }}">&nbsp;&nbsp;{{ '>>>' }}</a>
+                    </span>
+                {% endif %}
+                </div>
+            </form>
+        </div>
+        {% endblock %}
+    </body>
+</html>
