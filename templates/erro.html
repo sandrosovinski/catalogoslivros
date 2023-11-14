@@ -7,7 +7,7 @@
             <form clas="form-horizontal" method="POST" align="center">
             {{ form.csrf_token() }}
                 <div id="content-cadastro" class="content-cadastro">
-                    <table id="cadastro" class="cadastro">
+                    <table id="customers">
                         <tr>
                             <th colspan="2" align="center">Erro ao Realizar Cadastro.</th>
                         </tr>
@@ -21,12 +21,13 @@
                         </tr>
                         <tr>
                             <td> {{ form.exemplares.label }}</td>
-                            <td> {{ form.exemplares.data }}</td>
+                            <td  class="alert"> {{ form.exemplares.data }} Números de Exemplares deve ser maior que 0.</td>
                         </tr>
                     </table>
                 </div>    
             </form>
-	    </div>    
+	    </div>
+        {{ titulo_pesq }}
         {% endblock %}
   </body>
 </html>

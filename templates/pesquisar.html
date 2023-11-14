@@ -29,11 +29,17 @@
               <td>Digite o Título do Livro</td>
               <td><input name="titulo_pesq" type="text"></td>
             </tr>
+            <tr>
+              <td colspan="2" align="center">{{ form.submit(class="botao") }}</td>
+            </tr>
             {% endif %}
             {% if select == 'autor' %}
             <tr>
               <td>Digite o Autor do Livro</td>
               <td><input name="autor_pesq" type="text"></td>
+            </tr>
+            <tr>
+              <td colspan="2" align="center">{{ form.submit(class="botao") }}</td>
             </tr>
             {% endif %}
             {% if select == 'None': %}
@@ -44,5 +50,4 @@
         </table>
       </form>
     </div>
-    {{ select }}
     {% endblock %}
