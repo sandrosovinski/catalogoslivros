@@ -48,7 +48,7 @@ def sobre():
 #Página para informação de operação realizada com sucesso
 @app.route("/sucesso")
 def sucesso():
-    return render_template("sucesso.html")
+    return render_template("sucesso.html", )
 
 #Classe para criação do formulário de cadastro de livros
 class LivroForm(FlaskForm):
@@ -56,12 +56,18 @@ class LivroForm(FlaskForm):
     autor = StringField('Nome do Autor', validators=[DataRequired()])
     exemplares = IntegerField('Exemplares')
     submit = SubmitField('Enviar')
+    submit_voltar = SubmitField('Voltar')
 
 # Função para cadstrar um novo Livro
 @app.route("/cadastrar", methods=['GET','POST'])
 def cadastrar():
     #Cria uma nova intância da clase LivroForm
     form = LivroForm()
+    
+    botao_voltar = request.values.get('submit_voltar')
+    if botao_voltar:
+        return render_template("acesso.html")
+    
     if request.method == 'POST':
         titulo = request.form.get("titulo")
         autor = request.form.get("autor")

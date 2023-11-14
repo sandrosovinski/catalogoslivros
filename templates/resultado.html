@@ -29,14 +29,14 @@
                    <div class="botao-paginacao-background">
                    {% if pagination.has_prev %}
                        <span>
-                           <a class='botao-paginacao' href="{{ url_for('disponibilidade', page=pagination.prev_num) }}">{{ '<<<' }}&nbsp;&nbsp;</a>
+                           <a class='botao-paginacao' href="{{ url_for('resultado', page=pagination.prev_num) }}">{{ '<<<' }}&nbsp;&nbsp;</a>
                        </span>
                    {% endif %}
                
                    {% for number in pagination.iter_pages() %}
                        {% if pagination.page != number %}
                            <span>
-                                   <a class='botao-paginacao' href="{{ url_for('disponibilidade', page=number) }}">&nbsp;&nbsp;{{ number }}&nbsp;&nbsp;</a>
+                                   <a class='botao-paginacao' href="{{ url_for('resultado', page=number) }}">&nbsp;&nbsp;{{ number }}&nbsp;&nbsp;</a>
                            </span>
                         {% else %}
                            <span class='botao-paginacao'>&nbsp;&nbsp;{{ number }}&nbsp;&nbsp;</span>
@@ -45,7 +45,7 @@
                
                    {% if pagination.has_next %}
                        <span>
-                           <a class='botao-paginacao' href="{{ url_for('disponibilidade', page=pagination.next_num) }}">&nbsp;&nbsp;{{ '>>>' }}</a>
+                           <a class='botao-paginacao' href="{{ url_for('resultado', page=pagination.next_num) }}">&nbsp;&nbsp;{{ '>>>' }}</a>
                        </span>
                    {% endif %}
                    </div>
